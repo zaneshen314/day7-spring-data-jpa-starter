@@ -15,7 +15,7 @@ public class Employee {
     private Gender gender;
     private Double salary;
     private Boolean isActive = true;
-    private Long companyId;
+    private Integer companyId;
 
     public Employee(String name, Integer age, Gender gender, Double salary) {
         this.name = name;
@@ -80,11 +80,15 @@ public class Employee {
         isActive = active;
     }
 
-    public Long getCompanyId() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Long companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 }
