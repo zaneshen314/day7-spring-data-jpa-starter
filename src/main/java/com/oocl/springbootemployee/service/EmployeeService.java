@@ -9,6 +9,8 @@ import com.oocl.springbootemployee.repository.EmployeeMemoryRepository;
 import java.util.List;
 
 import com.oocl.springbootemployee.repository.EmployeeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService {
@@ -28,7 +30,9 @@ public class EmployeeService {
     }
 
     public List<Employee> findAll(Integer page, Integer pageSize) {
-        return employeeMemoryRepository.findAllByPage(page, pageSize);
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
+        Page<Employee> employeePage = employeeRepository.findAll(pageRequest);
+        return employeePage.getContent();
     }
 
     public Employee findById(Integer employeeId) {
