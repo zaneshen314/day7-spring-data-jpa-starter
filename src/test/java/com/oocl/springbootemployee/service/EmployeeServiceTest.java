@@ -75,7 +75,7 @@ class EmployeeServiceTest {
         //when
         //then
         assertThrows(EmployeeAgeNotValidException.class, () -> employeeService.create(kitty));
-        verify(mockedEmployeeMemoryRepository, never()).create(any());
+        verify(employeeRepository, never()).save(any());
     }
 
     @Test
