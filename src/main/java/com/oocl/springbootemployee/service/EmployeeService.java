@@ -50,7 +50,7 @@ public class EmployeeService {
         if(!employeeExisted.getActive())
             throw new EmployeeInactiveException();
 
-        return employeeRepository.updateById(employeeId, employee);
+        return employeeRepository.saveAndFlush(employee);
     }
 
     public void delete(Integer employeeId) {
