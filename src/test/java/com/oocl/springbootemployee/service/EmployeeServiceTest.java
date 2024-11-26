@@ -16,6 +16,7 @@ import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.EmployeeMemoryRepository;
 import java.util.List;
+import java.util.Optional;
 
 import com.oocl.springbootemployee.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
@@ -103,10 +104,10 @@ class EmployeeServiceTest {
         //given
         Employee inactiveEmployee = new Employee(1, "Bob", 31, Gender.FEMALE, 8000.0);
         inactiveEmployee.setActive(false);
-        when(mockedEmployeeMemoryRepository.findById(1)).thenReturn(inactiveEmployee);
+        when(employeeRepository.findById(1)).thenReturn(Optional.of(inactiveEmployee));
         //when
         //then
         assertThrows(EmployeeInactiveException.class, () -> employeeService.update(1, inactiveEmployee));
-        verify(mockedEmployeeMemoryRepository, never()).create(any());
+        verify(employeeRepository, never()).save(any());
     }
 }
