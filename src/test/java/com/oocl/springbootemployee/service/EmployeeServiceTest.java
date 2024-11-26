@@ -95,7 +95,7 @@ class EmployeeServiceTest {
         //when
         //then
         assertThrows(EmployeeAgeSalaryNotMatchedException.class, () -> employeeService.create(bob));
-        verify(mockedEmployeeMemoryRepository, never()).create(any());
+        verify(employeeRepository, never()).save(any());
     }
 
     @Test
