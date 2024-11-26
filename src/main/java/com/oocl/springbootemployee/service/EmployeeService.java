@@ -53,11 +53,26 @@ public class EmployeeService {
         Employee employeeExisted = employeeRepository.findById(employeeId).orElse(null);
         if(!employeeExisted.getActive())
             throw new EmployeeInactiveException();
-
-        return employeeRepository.saveAndFlush(employee);
+        return employeeRepository.saveAndFlush(updateEmployeeAttributes(employeeExisted,employee));
     }
 
     public void delete(Integer employeeId) {
         employeeRepository.deleteById(employeeId);
+    }
+
+    private Employee updateEmployeeAttributes(Employee employeeStored, Employee newEmployee) {
+        if (newEmployee.getName() != null) {
+            employeeStored.setName(newEmployee.getName());
+        }
+        if (newEmployee.getAge() != null) {
+            employeeStored.setAge(newEmployee.getAge());
+        }
+        if (newEmployee.getGender() != null) {
+            employeeStored.setGender(newEmployee.getGender());
+        }
+        if (newEmployee.getSalary() != null) {
+            employeeStored.setSalary(newEmployee.getSalary());
+        }
+        return employeeStored;
     }
 }
