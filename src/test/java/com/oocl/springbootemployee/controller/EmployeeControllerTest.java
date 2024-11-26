@@ -199,18 +199,20 @@ class EmployeeControllerTest {
     @Test
     void should_remove_employee_success() throws Exception {
         // Given
-        int givenId = 1;
+        List<Employee> givenEmployees = employeeRepository.findAll();
+        Employee givenEmployee = givenEmployees.get(0);
+        int givenId = givenEmployee.getId();
 
         // When
         // Then
         client.perform(MockMvcRequestBuilders.delete("/employees/" + givenId))
             .andExpect(MockMvcResultMatchers.status().isNoContent());
-        List<Employee> employees = employeeMemoryRepository.findAll();
-        assertThat(employees).hasSize(4);
-        assertThat(employees.get(0).getId()).isEqualTo(2);
-        assertThat(employees.get(1).getId()).isEqualTo(3);
-        assertThat(employees.get(2).getId()).isEqualTo(4);
-        assertThat(employees.get(3).getId()).isEqualTo(5);
+        List<Employee> afterEmployees = employeeRepository.findAll();
+        assertThat(afterEmployees).hasSize(4);
+        assertThat(afterEmployees.get(0).getId()).isEqualTo(givenEmployees.get(1).getId());
+        assertThat(afterEmployees.get(1).getId()).isEqualTo(givenEmployees.get(2).getId());
+        assertThat(afterEmployees.get(2).getId()).isEqualTo(givenEmployees.get(3).getId());
+        assertThat(afterEmployees.get(3).getId()).isEqualTo(givenEmployees.get(4).getId());
     }
 
     @Test
