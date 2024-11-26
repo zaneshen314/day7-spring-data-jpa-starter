@@ -50,7 +50,7 @@ class EmployeeServiceTest {
     void should_return_the_created_employee_when_create_given_a_employee() {
         //given
         Employee lucy = new Employee(1, "Lucy", 18, Gender.FEMALE, 8000.0);
-        when(mockedEmployeeMemoryRepository.create(any())).thenReturn(lucy);
+        when(employeeRepository.save(any())).thenReturn(lucy);
         //when
         Employee createdEmployee = employeeService.create(lucy);
 
