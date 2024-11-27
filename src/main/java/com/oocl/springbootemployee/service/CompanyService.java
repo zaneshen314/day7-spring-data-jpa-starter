@@ -2,7 +2,6 @@ package com.oocl.springbootemployee.service;
 
 import com.oocl.springbootemployee.model.Company;
 import com.oocl.springbootemployee.model.Employee;
-import com.oocl.springbootemployee.repository.CompanyMemoryRepository;
 import com.oocl.springbootemployee.repository.CompanyRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,11 +11,9 @@ import java.util.List;
 
 @Service
 public class CompanyService {
-    private final CompanyMemoryRepository companyMemoryRepository;
     private final CompanyRepository companyRepository;
 
-    public CompanyService(CompanyMemoryRepository companyMemoryRepository, CompanyRepository companyRepository) {
-        this.companyMemoryRepository = companyMemoryRepository;
+    public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 

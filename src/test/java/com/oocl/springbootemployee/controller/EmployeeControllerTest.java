@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
-import com.oocl.springbootemployee.repository.EmployeeMemoryRepository;
+
 import java.util.List;
 
 import com.oocl.springbootemployee.repository.EmployeeRepository;
@@ -31,9 +31,6 @@ class EmployeeControllerTest {
     private MockMvc client;
 
     @Autowired
-    private EmployeeMemoryRepository employeeMemoryRepository;
-
-    @Autowired
     private EmployeeRepository employeeRepository;
 
     @Autowired
@@ -42,7 +39,6 @@ class EmployeeControllerTest {
     @BeforeEach
     void setUp() {
         givenDataInJpaRepository();
-        givenDataInMemoryRepository();
     }
 
     private void givenDataInJpaRepository() {
@@ -52,15 +48,6 @@ class EmployeeControllerTest {
         employeeRepository.save(new Employee(null, "David Williams", 35, Gender.MALE, 5500.0));
         employeeRepository.save(new Employee(null, "Emily Brown", 23, Gender.FEMALE, 4500.0));
         employeeRepository.save(new Employee(null, "Michael Jones", 40, Gender.MALE, 7000.0));
-    }
-
-    private void givenDataInMemoryRepository() {
-        employeeMemoryRepository.findAll().clear();
-        employeeMemoryRepository.create(new Employee(1, "John Smith", 32, Gender.MALE, 5000.0));
-        employeeMemoryRepository.create(new Employee(2, "Jane Johnson", 28, Gender.FEMALE, 6000.0));
-        employeeMemoryRepository.create(new Employee(3, "David Williams", 35, Gender.MALE, 5500.0));
-        employeeMemoryRepository.create(new Employee(4, "Emily Brown", 23, Gender.FEMALE, 4500.0));
-        employeeMemoryRepository.create(new Employee(5, "Michael Jones", 40, Gender.MALE, 7000.0));
     }
 
     @Test

@@ -5,7 +5,7 @@ import com.oocl.springbootemployee.exception.EmployeeAgeSalaryNotMatchedExceptio
 import com.oocl.springbootemployee.exception.EmployeeInactiveException;
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
-import com.oocl.springbootemployee.repository.EmployeeMemoryRepository;
+
 import java.util.List;
 
 import com.oocl.springbootemployee.repository.EmployeeRepository;
@@ -14,10 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService {
-    private final EmployeeMemoryRepository employeeMemoryRepository;
     private final EmployeeRepository employeeRepository;
-    public EmployeeService(EmployeeMemoryRepository employeeMemoryRepository, EmployeeRepository employeeRepository) {
-        this.employeeMemoryRepository = employeeMemoryRepository;
+    public EmployeeService( EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
